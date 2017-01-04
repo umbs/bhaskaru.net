@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+    <title>Welcome</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+
+<body>
+
+<center>
+<a href="index.html">Articles</a> |
+<a href="github.com/umbs">Code</a>
+</center>
+
+<hr>
+
+TLDR:
+$ vim sample.txt
+line   45:
+E568: duplicate cscope database not added
+Press ENTER or type command to continue
+Fix:
+Add ‘set nocscopeverbose‘ to .vimrc
+Detailed:
+
+My primary editor for writing code is Vim (http://www.vim.org/) combined with couple of plugins. The cscope_maps.vim (http://cscope.sourceforge.net/cscope_maps.vim) plugin is immensely helpful in code navigation. However, there is an issue with that plugin, particularly in this part of the code.
+40    " add any cscope database in current directory
+41    if filereadable("cscope.out")
+42        cs add cscope.out
+43    " else add the database pointed to by environment variable
+44    elseif $CSCOPE_DB != ""
+45        cs add $CSCOPE_DB
+46    endif
+47
+48    " show msg when any other cscope db added
+49    set cscopeverbose
+
+To use that plugin, one has to build cscope database on codebase, details of which are given here (http://cscope.sourceforge.net/cscope_vim_tutorial.html) . Imagine if your codebase is like this:
+$ project1/a/b/c
+$ project2/x/y/z
+You have created a cscope database in the root directory of each project.
+Vim has to be configured to recursively look for cscope database up the directory until the root of project1. I think out-of-the-box Vim comes with this support (not sure). If $CSCOPE_DB is defined and points else where (say cscope database within project2), the search gets messed up even further.
+Opening a file in Vim would then throw following (or similar looking) errors.
+$ vim sample.txt
+line   45:
+E568: duplicate cscope database not added
+Press ENTER or type command to continue
+Above error means that Vim is compiled with a cscope module and adding another cscope database (line 45) is akin to opening a second database (duplicate). Vim complains. But it is like a warning. You can check what is the first cscope database added/connected using ‘:cscope show‘ command.
+Easiest fix is to suppress the warnings. Change line 49 to ‘set nocscopeverbose‘ or add it in .vimrc file (latter worked for me).
+
+Note to Self: Did I just rehash contents of below blog? Sort of, for a different plugin.
+
+Reference:
+[1] https://blogs.oracle.com/natarajan/entry/avoiding_duplicate_cscope_database_error
+[2] http://vim.1045645.n5.nabble.com/search-upward-of-cscope-out-file-td1160687.html
+https://twitter.com/share
+
+</body>
+</html>
+
