@@ -1,5 +1,5 @@
-body { 
-	margin: 0 auto; 
+body {
+	margin: 0 auto;
     max-width: 50em;
     font-family: "Georgia", "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
@@ -12,7 +12,7 @@ h2 {
     padding-top: 1em;
 }
 
-h1, 
+h1,
 h2,
 strong {
   color: #333;
@@ -26,6 +26,7 @@ pre {
 code {
   padding: 2px 4px;
   vertical-align: text-bottom;
+  font-family: monspace;
 }
 
 pre {
