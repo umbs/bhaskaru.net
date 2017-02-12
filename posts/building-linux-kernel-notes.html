@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title> Bhaskar Upadhyayula </title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" -->
+</head>
+
+
+<body>
+
+<h2> Building Linux Kernel (Notes) </h2>
+
+<p>
+These are my notes from Linux Device Drivers class at <a href="http://www.ucsc-extension.edu"> UCSC Extension </a>. This could be incomplete and can contain errors.
+
+<p>
+Steps to build linux kernel
+<ol>
+    <li> Download latest stable source from <a href="http://www.kernel.org/"> here </a>
+    <li> <div id="cli01"> cd /usr/src </div>
+    <li> <div id="cli01"> rm -rf linux </div>
+    <li> <div id="cli01"> tar Jxvf linux-x.y.z.tar.xz </div>
+    <li> <div id="cli01"> ln -sf linux-x.y.z linux </div>
+    <li> <div id="cli01"> cp /boot/.config . </div>
+    <li> <div id="cli01"> make oldconfig </div>
+    <li> <div id="cli01"> make </div>
+    <li> <div id="cli01"> make modules_install </div>
+    <li> <div id="cli01"> make install </div>
+    <li> <div id="cli01"> reboot     /* choose kernel during bootup */ </div>
+</ol>
+</p>
+
+<p>
+Steps 1 to 5 are obvious.
+</p>
+
+<p>
+Run <span id="cli01"> make help </span> to get a quick overview of each make options.
+</p>
+
+<p>
+Step 6: One way to compile a kernel is to work off of a config file. An instance of it can be got from <span id="cli01"> /boot </span> directory, which makes us use the next command.
+</p>
+
+<p>
+Step 7: <span id="cli01"> make oldconfig </span> takes an existing config and asks input from users for each configuration option finally resulting in new .config file. Old config file will be saved in <span id="cli01"> .config.old</span>. Another option (GUI) is to run <span id="cli01"> make xconfig </span>
+</p>
+
+<p>
+Step 8: Using the new <span id="cli01"> .config </span>file, compile the kernel.
+</p>
+
+<p>
+Step 9: Install modules using this command. I noticed that this command is redundant on my system (built 3.13.0 kernel on Ubuntu 12.0.4).
+</p>
+
+<p>
+Step 10: <span id="cli01">make install</span>
+</p>
+
+<p>
+Step 11: reboot the machine and at boot up time, we should get an option to choose which kernel to boot in to.
+</p>
+
+</body>
+</html>
