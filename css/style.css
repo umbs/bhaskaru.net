@@ -23,8 +23,9 @@ pre {
 }
 
 code {
-  padding: 2px 4px;
-  vertical-align: text-bottom;
+  padding: 20px;
+  /* border: 1px solid #999;
+  vertical-align: text-bottom; */
   font-family: monospace;
 }
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title> Bhaskar Upadhyayula </title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" -->
+</head>
+
+
+<body>
+
+<h2>
+Notes on Endianness
+</h2>
+
+<p>
+Consider four byte number: 0x0A0B0C0D (Decimal: 168496141). LSB = 0x0D and MSB =
+0x0A. And following memory layout
+<br>
+<img src="../images/endianness_memory.png" alt="Memory Layout" height="90" width="300">
+</p>
+<br>
+<p>
+<b>Little-Endian:</b> In LE, LSB is in lowest memory and MSB in highest memory address. So, the number is stored as: 0x0D0C0B0A in memory.
+<br>
+Example architectures: Intel X86
+<br>
+Number: 0X0A0B0C0D. LSB = 0x0D and MSB = 0x0A
+<br>
+<img src="../images/little_endian.png" alt="Little Endian" height="90" width="300">
+</p>
+
+<pre>
+<code>
+  int i = 0x0A0B0C0D;
+  char *c = (char *) &i;
+  printf ("0x%xn", *c);
+  // Output is 0xD = little-endian.
+</code>
+</pre>
+
+<br>
+<p>
+<b>Big-Endian (aka Network Byte Order)</b>: In BE, MSB is in lowest memory address and LSB in highest. It looks the way numbers are written down on paper. So, the number is stored as: 0x0A0B0C0D in memory.
+<br>
+Example architectures: Motorola 68k, Data transfer on networks use NBO.
+<br>
+Number: 0x0A0B0C0D. LSB = 0x0A and MSB = 0x0D
+<br>
+<img src="../images/big_endian.png" alt="Big Endian" height="90" width="300">
+</p>
+
+<pre>
+<code>
+int i = 0x0A0B0C0D;
+char *c = (char *) &i;
+printf ("0x%xn", *c);
+// Output is 0xa = big-endian.
+</code>
+</pre>
+
+<p>
+<b>Host-Byte Order:</b> Ordering on the host machine. If processor is x86, its little-endian, if its Motorola’s 68k, its big-endian.
+</p>
+
+<p>
+<b>Mixed-Endian (or Middle-Endian):</b> Ordering of bytes within 16-bit word may differ from ordering of 16-bit words within 32-bit word.
+</p>
+
+<p>
+<b>Bi-Endian:</b> Architectures allowing switchable endianness in data segment, code segment or both. ‘Bi-Endian’ refers how processor accesses data. Instruction access (fetching instruction words) is usually fixed endian. Intel’s Itanium CPU allows bi-endian data and instruction access.
+Ex: ARM version 3 and above, PowerPC,
+</p>
+
+<p>
+<b>References:</b>
+<ol>
+    <li>http://en.wikipedia.org/wiki/Endianness
+</ol>
+</p>
+
+</body>
+</html>
