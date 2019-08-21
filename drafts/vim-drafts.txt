@@ -1,0 +1,27 @@
+Vim Modes
+=========
+Vim is a Modal Text Editor. I only knew or thought I used following modes:
+Normal, Insert, Command-line* and Visual. But the help system says there are
+SEVEN BASIC modes and SEVEN ADDITIONAL modes that are variations of BASIC modes.
+
+That's a lot of modes for a text editor.
+
+BASIC modes
+    1) Normal (sometimes called Command mode. This is different than
+Command-line mode)
+    2) Visual
+    3) Select
+    4) Insert
+    5) Command-line
+    6) Ex 
+    7) Terminal-Job (this is only available on Vim 8.0 and higher << TODO)
+
+
+* I didn't know that Command and Command-line are different modes. Normal mode
+  is also called as Command mode. Command-line mode is when you type ':' in
+  Normal mode
+
+Reference
+:help vim-modes
+:help vim-modes-intro
+Vim Mode Transition: https://rawgit.com/darcyparker/1886716/raw/vimModeStateDiagram.svg
